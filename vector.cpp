@@ -2,13 +2,34 @@
 #include <iostream>
 #include<bits/stdc++.h>
 
+// sorting vector of integer with function method
 bool comparetor(int i,int j) {
     return i>j;
 }
 
+// sorting of vector of int with object comparetor
 struct myclass {
   bool operator() (int i,int j) { return (i<j);}
 } myobject;
+
+struct Student {
+    int age;
+    std::string name;
+    Student(int i,std::string s) {
+        age = i;
+        name = s;
+    }
+};
+
+bool studentSort(const Student &s1,const Student &s2) {
+    return s1.age>s2.age;
+}
+
+struct myStudentSortClass {
+    bool operator() (const Student &s1,const Student &s2) {
+        return s1.age<s2.age;
+    }
+} myStudentSortObject;
 
 using namespace std;
 int main() {
@@ -71,6 +92,49 @@ int main() {
     vector<int> ::iterator itr;
     for(itr=v.begin();itr!=v.end();itr++) {
         cout<<*itr<<", ";
+    }
+    cout<<endl;
+    
+    
+    Student *yogesh = new Student(5,"Yogesh");
+    //cout<<yogesh->name;
+    
+    Student *souvik = new Student(4,"Souvik");
+    //cout<<souvik->name;
+    
+    Student *anumay = new Student(6,"Anumay");
+    // cout<<anumay->name;
+    
+    vector<Student> students;
+    students.push_back(*yogesh);
+    students.push_back(*souvik);
+    students.push_back(*anumay);
+    
+    vector<Student> ::iterator studentItr;
+    for(studentItr=students.begin();studentItr!=students.end();studentItr++) {
+        cout<<studentItr->name<<" "<<studentItr->age<<endl;
+    }
+    cout<<endl;
+    sort(students.begin(),students.end(),studentSort);
+    for(studentItr=students.begin();studentItr!=students.end();studentItr++) {
+        cout<<studentItr->name<<" "<<studentItr->age<<endl;
     } 
+    cout<<endl;
+    sort(students.begin(),students.end(),myStudentSortObject);
+    for(studentItr=students.begin();studentItr!=students.end();studentItr++) {
+        cout<<studentItr->name<<" "<<studentItr->age<<endl;
+    }
+    
+    cout<<endl;
+    sort(students.begin(),students.end(),[](const Student &s1,const Student &s2){
+        return s1.name > s2.name;
+    });
+    for(studentItr=students.begin();studentItr!=students.end();studentItr++) {
+        cout<<studentItr->name<<" "<<studentItr->age<<endl;
+    }
+    
+    
+    
+    
     return 0;
 }
