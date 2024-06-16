@@ -133,8 +133,15 @@ int main() {
         cout<<studentItr->name<<" "<<studentItr->age<<endl;
     }
     
+    cout<<endl;
+    cout<<"Iterating with AUTO"<<endl; // with auto code is compact and takes less time to write
+    for(auto a:students) {
+        cout<<"Name = "<<a.name<<" Age = "<<a.age<<endl;
+    }
     
-    
+    // Difference between AUTO and ITERATOR
+    // ITEARTOR gives address so address se value nikalo and then .name and .age karega
+    // AUTO directly gives us Value so we can directly do .name and .age
     
     return 0;
 }
