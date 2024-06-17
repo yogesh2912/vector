@@ -143,5 +143,11 @@ int main() {
     // ITEARTOR gives address so address se value nikalo and then .name and .age karega
     // AUTO directly gives us Value so we can directly do .name and .age
     
+    cout<<"Iterating over vector without index parameter"<<endl;
+    vector<int> nums = {4,2,6,1,9};
+    for(int num:nums) {
+        cout<<num<<" ";
+    }
+    cout<<endl;
     return 0;
 }
