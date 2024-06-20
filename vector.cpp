@@ -149,5 +149,32 @@ int main() {
         cout<<num<<" ";
     }
     cout<<endl;
+
+    vector<int> testV = {1,6,3,8,9};
+    testV.push_back(10);
+    //testV.push_front(4); - not supported
+    cout<<"Demo of push_back/front() pop_front/back() front() back() begin() methods"<<endl;
+    for(int i:testV) {
+        cout<<i<<" ";
+    }
+    cout<<"Front() "<<testV.front()<<endl; // return int
+    cout<<"Back() "<<testV.back()<<endl; // return int
+    cout<<"Begin() "<<*testV.begin()<<endl; // returns iterator
+    
+    testV.pop_back();
+    cout<<endl;
+    cout<<"Vector after pop_back()"<<endl;
+    for(int i:testV) {
+        cout<<i<<" ";
+    }
+    cout<<endl;
+    //testV.pop_front(); - not supported
+    // Since vector has array as internal data structure so operation at begining are not possible like push_front() and pop_front()
+    // back() and front() - // return int
+    // begin() and end() - // retutn iterator
+    // if want to remove last element of vector then
+    // i) pop_back() or
+    // ii) v.erase(--v.end())
+    
     return 0;
 }
