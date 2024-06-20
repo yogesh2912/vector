@@ -20,6 +20,13 @@ int main() {
         cout<<"Element not found"<<endl;
         // do insertion over here
     }
+
+    
+    cout<<"Demo of count() in map/unordered_map "<<M.count(9)<<endl;
+    // M.count(key) - it returns 1 if key is present else 0
+    // map<int,list<int> ::iterator> M;
+    // M.count(5); if 5 key present then 1 else 0 
+    // so instead of if(M.find(ele)!=M.end()) do if(M.count(ele))
     
     // iterator in Map
     unordered_map<int,int> ::iterator itr;
