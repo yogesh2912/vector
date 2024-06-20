@@ -175,6 +175,10 @@ int main() {
     // if want to remove last element of vector then
     // i) pop_back() or
     // ii) v.erase(--v.end())
+
+    //Similar to list erase(iterator position) and erase[iterator startpos,iterator endPos) are possible in vector and erase(element) is not possible as multiple entry of same element can be possible
+    // vector_name.erase(position);    for deletion at specific position
+    //vector_name.erase(starting_position, ending_position);    // for deletion in range
     
     return 0;
 }
