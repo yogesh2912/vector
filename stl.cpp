@@ -27,6 +27,9 @@ int main() {
     // map<int,list<int> ::iterator> M;
     // M.count(5); if 5 key present then 1 else 0 
     // so instead of if(M.find(ele)!=M.end()) do if(M.count(ele))
+
+    // Erase of element - map.erase(element) - possible as keys duplicate nhi hota hei.
+    M.erase(9);
     
     // iterator in Map
     unordered_map<int,int> ::iterator itr;
