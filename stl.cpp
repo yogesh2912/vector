@@ -118,6 +118,25 @@ int main() {
     for(auto a : eSet) {
         cout<<a<<" ";
     }
+
+    // count no of frequency of all elements in vector
+    // here map meh uss key ko find krke - agar hei toh update it else nhi hei toh insert hei - itna lamba step na karo
+    // direct MM[ele]++ - if element nhi hei to usse insert krke uska count increase kr dega else already present to counter increase kr dega
+    vector<int> vc={1,4,2,1,3,5,2,1,4,6,7,3};
+    map<int,int> MM;
+    for(int i:vc) {
+        MM[i]++;
+    }
+    
+    for(auto at:MM) {
+        cout<<at.first<<" "<<at.second<<endl;
+    }
+
+    // new trick
+    // M[1] = 11; then M[1]=22; print M[1] then solution will be 22 but in case of M.insert() ans would have been 11. SO wherever you have to
+    // update map value with new have use this trick - 
+    // M[1]=11; initially it will insert in MAP and add value and M[1]=22; now it will update it
+    // https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1 - check this for implementation.
     return 0;
     
 }
