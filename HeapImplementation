@@ -90,18 +90,18 @@ void addElementInPQ(Priority_queue *pq,int noOfSmallestElements,int element) {
 }
 int main() {
     /*
-        Here in this program we will implement heap and how we use this heap in real case scenario.
-        Let's create a heap of size 10 and we will use it to store top 3 smallest elements of a stream of integer at any moment of time.
-        We would have created heapArray of size equal to no Of SmallestElements that has been mentioned in problem but we will use 10 because
+        Here in this program, we will implement a heap and how we use this heap in real case scenario.
+        Let's create a heap of size 10 and we will use it to store the top 3 smallest elements of a stream of integers at any moment.
+        We would have created a heapArray of size equal to no Of SmallestElements that has been mentioned in the problem but we will use 10 because
         when we code we don't know what is the default size of heapArray that priority_queue uses and most of the time we use priority for this perpose
     */
 
-    // tells how many top smallest elements of a integer stream should be stored.
+    // tells how many top smallest elements of an integer stream should be stored.
     int noOfSmallestElements = 3;
 
 
     /*
-        addElement() method new element arrives in Integer stream
+        addElement() method new element arrives in the Integer stream
         showElements() method is used to show all the k-smallest elements in the stream till that moment.
     */
     Priority_queue pq;
