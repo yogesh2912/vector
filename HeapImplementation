@@ -1,0 +1,125 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Priority_queue {
+    vector<int> heapArray;
+    int noOfElementsInHeap = 0;
+    int maxElementInHeap = 10;
+
+    // Constructor to initialize the vector
+    Priority_queue() : heapArray(10) {}
+
+    void addElement(int element) {
+        if(noOfElementsInHeap == maxElementInHeap) {
+            cout<<"Cannot process as heap reached it's maximum capacity"<<endl;
+            return;
+        }
+
+
+        // find nextIndex and increase noOfElementsInHeap
+        int index = noOfElementsInHeap++;
+        heapArray[index] = element;
+        int parentIndex  = (index-1)/2;
+
+        while(1) {
+            if(index <= 0 || heapArray[index] < heapArray[parentIndex]) {
+                break;
+            }
+            // swap
+            int temp = heapArray[index];
+            heapArray[index] = heapArray[parentIndex];
+            heapArray[parentIndex] = temp;
+
+            index = parentIndex;
+            parentIndex  = (index-1)/2;
+        }
+    }
+
+    void deleteElement() {
+        // Here basically heapify wala logic dega
+        int lastIndex = noOfElementsInHeap-1;
+        heapArray[0] = heapArray[lastIndex];
+        heapArray[lastIndex] = -1;
+        lastIndex--;
+
+        heapify(0,lastIndex);
+        noOfElementsInHeap = noOfElementsInHeap - 1;
+    }
+
+    void heapify(int index,int lastIndex) {
+        int leftChildIndex = (2*index)+1 > lastIndex ? -1 : (2*index)+1;
+        int rightChildIndex = (2*index)+2 > lastIndex ? -1 : (2*index)+2;
+
+        int maxIndex = index;
+        if(leftChildIndex != -1) {
+            maxIndex = heapArray[leftChildIndex] > heapArray[maxIndex] ? leftChildIndex : maxIndex;
+        }
+
+        if(rightChildIndex != -1) {
+            maxIndex = heapArray[rightChildIndex] > heapArray[maxIndex] ? rightChildIndex : maxIndex;
+        }
+
+        if(maxIndex != index) {
+            // swap
+            int temp = heapArray[maxIndex];
+            heapArray[maxIndex] = heapArray[index];
+            heapArray[index] = temp;
+
+            heapify(maxIndex,lastIndex);
+        }
+    }
+
+    void elementsInHeap() {
+        cout<<"Elements in heap:"<<endl;
+        for(int element:heapArray) {
+                if(element!=-1) {
+                    cout<<element<<" ";
+                }
+        }
+    }
+
+    int getSize() {
+        return noOfElementsInHeap;
+    }
+};
+void addElementInPQ(Priority_queue *pq,int noOfSmallestElements,int element) {
+    pq->addElement(element);
+    if(pq->getSize()>noOfSmallestElements) {
+        pq->deleteElement();
+    }
+}
+int main() {
+    /*
+        Here in this program we will implement heap and how we use this heap in real case scenario.
+        Let's create a heap of size 10 and we will use it to store top 3 smallest elements of a stream of integer at any moment of time.
+        We would have created heapArray of size equal to no Of SmallestElements that has been mentioned in problem but we will use 10 because
+        when we code we don't know what is the default size of heapArray that priority_queue uses and most of the time we use priority for this perpose
+    */
+
+    // tells how many top smallest elements of a integer stream should be stored.
+    int noOfSmallestElements = 3;
+
+
+    /*
+        addElement() method new element arrives in Integer stream
+        showElements() method is used to show all the k-smallest elements in the stream till that moment.
+    */
+    Priority_queue pq;
+    addElementInPQ(&pq,noOfSmallestElements,7);
+    addElementInPQ(&pq,noOfSmallestElements,17);
+    pq.elementsInHeap();
+    addElementInPQ(&pq,noOfSmallestElements,9);
+    addElementInPQ(&pq,noOfSmallestElements,13);
+    pq.elementsInHeap();
+    addElementInPQ(&pq,noOfSmallestElements,47);
+    addElementInPQ(&pq,noOfSmallestElements,2);
+    pq.elementsInHeap();
+    addElementInPQ(&pq,noOfSmallestElements,19);
+    addElementInPQ(&pq,noOfSmallestElements,31);
+    pq.elementsInHeap();
+
+
+
+}
+
+
