@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+/*
+    currentIndex = index
+    leftChild of currentIndex = 2index+1
+    rightClild of currentIndex = 2index+2
+
+    parent of currentIndex = (index-1)/2  - floor value
+*/
+void heapify(vector<int> &v, int index, int lastIndex) {
+    int leftChildIndex = (2*index)+1 > lastIndex ? -1 : (2*index)+1;
+    int rightChildIndex = (2*index)+2 > lastIndex ? -1 : (2*index)+2;
+
+    int maxIndex = index;
+    if(leftChildIndex != -1) {
+        maxIndex = v[leftChildIndex] > v[maxIndex] ? leftChildIndex : maxIndex;
+    }
+
+    if(rightChildIndex != -1) {
+        maxIndex = v[rightChildIndex] > v[maxIndex] ? rightChildIndex : maxIndex;
+    }
+
+    if(maxIndex != index) {
+        // swap
+        int temp = v[maxIndex];
+        v[maxIndex] = v[index];
+        v[index] = temp;
+
+        heapify(v,maxIndex,lastIndex);
+    }
+}
+void heapSort(vector<int> &v) {
+    // make heap of current elements
+    // no of elements in vector
+    int n = v.size();
+
+    // last index of vector is (n-1) then uska parent (n-2)/2
+    for(int index = (n-2)/2;index>=0;index--) {
+        heapify(v,index,n-1);
+    }
+
+    // convert current vector into sorted array
+    for(int index = n-1;index>0;index--) {
+        // swap - basically it's deletion
+        int temp = v[index];
+        v[index] = v[0];
+        v[0] = temp;
+
+        heapify(v,0,index-1);
+
+    }
+
+}
+int main() {
+    vector<int> v = {3,1,6,8,3,9,4,23,56,2,90,22,13,84,11};
+    heapSort(v);
+    for(int element:v) {
+        cout<<element<<" ";
+    }
+}
